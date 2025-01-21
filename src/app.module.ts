@@ -8,6 +8,8 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { GraphQLModule } from '@nestjs/graphql';
 import { join } from 'path';
 import { ProductModule } from './product/product.module';
+import { UserModule } from './user/user.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { ProductModule } from './product/product.module';
         POSTGRES_DB: Joi.string().required(),
         POSTGRES_PASSWORD: Joi.string().required(),
         POSTGRES_PORT: Joi.number().required(),
+        JWT_ACCESSTOKEN_SECRET: Joi.string().required(),
+        JWT_ACCESSTOKEN_EXPIRATION_TIME: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -27,6 +31,8 @@ import { ProductModule } from './product/product.module';
       context: ({ req }) => ({ req }),
     }),
     ProductModule,
+    UserModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
