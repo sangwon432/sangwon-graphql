@@ -1,10 +1,10 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class LoggedUserDto {
+export class CreateTermsDto {
   @Field()
-  email: string;
+  personalInfo: boolean;
 
   @Field()
-  password: string;
+  agreeOfTerms: boolean;
 }

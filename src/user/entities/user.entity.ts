@@ -1,8 +1,9 @@
-import { BeforeInsert, Column, Entity } from 'typeorm';
+import { BeforeInsert, Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as gravatar from 'gravatar';
 import { BaseEntity } from '../../common/base.entity';
 import { Field, ObjectType } from '@nestjs/graphql';
+import { Terms } from './terms.entity';
 
 @ObjectType()
 @Entity()
@@ -22,6 +23,14 @@ export class User extends BaseEntity {
   @Column({ nullable: true })
   @Field()
   public profileImg?: string;
+
+  @OneToOne(() => Terms, {
+    eager: true,
+    cascade: true,
+  })
+  @JoinColumn()
+  @Field(() => Terms, { nullable: true })
+  public terms: Terms;
 
   @BeforeInsert()
   async handlePreSaveTasks(): Promise<void> {

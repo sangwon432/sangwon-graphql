@@ -1,19 +1,6 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-  Req,
-  UseGuards,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body, Req, UseGuards } from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
 import { CreateUserDto } from '../user/dto/create-user.dto';
-import { LoggedinUserDto } from '../user/dto/loggedin-user.dto';
 import { RequestWithUserInterface } from './interfaces/requestWithUser.interface';
 import { LocalAuthGuard } from './guards/local-auth.guard';
 import { AccessTokenGuard } from './guards/access-token.guard';
