@@ -1,35 +1,26 @@
-import {
-  BeforeInsert,
-  Column,
-  CreateDateColumn,
-  Entity,
-  PrimaryGeneratedColumn,
-  UpdateDateColumn,
-} from 'typeorm';
+import { BeforeInsert, Column, Entity } from 'typeorm';
 import * as bcrypt from 'bcryptjs';
 import * as gravatar from 'gravatar';
+import { BaseEntity } from '../../common/base.entity';
+import { Field, ObjectType } from '@nestjs/graphql';
 
+@ObjectType()
 @Entity()
-export class User {
-  @PrimaryGeneratedColumn('uuid')
-  public id: string;
-
+export class User extends BaseEntity {
   @Column()
+  @Field()
   public username: string;
 
   @Column({ unique: true })
+  @Field()
   public email: string;
 
   @Column()
+  @Field()
   public password: string;
 
-  @CreateDateColumn()
-  public createdAt: Date;
-
-  @UpdateDateColumn()
-  public updatedAt: Date;
-
   @Column({ nullable: true })
+  @Field()
   public profileImg?: string;
 
   @BeforeInsert()

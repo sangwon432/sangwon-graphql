@@ -18,6 +18,17 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type User {
+  id: ID!
+  createdAt: DateTime!
+  updatedAt: DateTime
+  deletedAt: DateTime
+  username: String!
+  email: String!
+  password: String!
+  profileImg: String!
+}
+
 type Query {
   getAllProducts: [Product!]!
   getProductById(id: String!): Product!
@@ -27,6 +38,9 @@ type Mutation {
   createProduct(createProductDto: CreateProductDto!): Product!
   deleteProduct(id: String!): Product!
   updateProduct(updateProductDto: UpdateProductDto!): Product!
+
+  """User signup"""
+  createUser(createUserDto: CreateUserDto!): User!
 }
 
 input CreateProductDto {
@@ -42,4 +56,10 @@ input UpdateProductDto {
   description: String
   price: Float! = 0
   category: String! = "IT"
+}
+
+input CreateUserDto {
+  username: String!
+  email: String!
+  password: String!
 }

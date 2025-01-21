@@ -18,7 +18,7 @@ export class AuthService {
   ) {}
   async createUser(createUserDto: CreateUserDto) {
     const newUser = await this.userService.createUser(createUserDto);
-    newUser.password = undefined;
+    // newUser.password = undefined;
     return newUser;
   }
 
